@@ -24,6 +24,16 @@ class FavouriteCitiesViewController: UIViewController {
         setupInterface()
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: nil, completion: { [weak self]
+            _ in
+            guard let self = self else { return }
+            self.collectionView.collectionViewLayout.invalidateLayout()
+            
+        })
+    }
+    
     //MARK: Initial setup
     private func setupInterface() {
         collectionView.delegate = self
